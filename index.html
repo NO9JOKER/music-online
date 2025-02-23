@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title>在线音乐播放器</title>
-    <!-- 引入 APlayer 样式 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.css">
-</head>
-<body>
-    <!-- 播放器容器 -->
-    <div id="aplayer"></div>
+<script src="audio-list.js"></script> <!-- 加载自动生成的列表 -->
+<script>
+    // 动态生成播放列表（以下代码替换原有 script 内容）
+    const playlist = document.getElementById('playlist');
+    const audioPlayer = document.getElementById('audioPlayer');
 
-    <!-- 先加载 MetingJS 脚本 -->
-    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
-    
-    <!-- 配置 MetingJS 标签 -->
-    <meting-js
-        server="netease"
-        type="playlist"
-        id="9261452921"  <!-- 你的网易云歌单 ID -->
-        fixed="true"
-        theme="#FF4081"
-    ></meting-js>
-</body>
-</html>
+    audioFiles.forEach((file, index) => {
+        const div = document.createElement('div');
+        div.className = 'song-item';
+        div.textContent = file.split('/').pop(); // 显示文件名（如 "音乐1.mp3"）
+        div.onclick = () => {
+            audioPlayer.src = file;
+            audioPlayer.play();
+        };
+        playlist.appendChild(div);
+    });
+</script>
