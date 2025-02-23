@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>在线音乐播放器</title>
+    <!-- APlayer 样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.css">
+</head>
+<body>
+    <!-- 播放器容器 -->
+    <div id="aplayer"></div>
+
+    <!-- MetingJS 脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    
+    <!-- 配置 MetingJS -->
+    <meting-js
+        server="netease"       <!-- 平台：网易云 -->
+        type="playlist"        <!-- 类型：歌单 -->
+        id="9261452921"  <!-- 网易云歌单 ID -->
+        fixed="true"           <!-- 固定播放器位置 -->
+        theme="#FF4081"        <!-- 播放器主题色 -->
+    ></meting-js>
+</body>
+</html>
