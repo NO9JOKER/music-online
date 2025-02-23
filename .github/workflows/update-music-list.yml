@@ -1,0 +1,28 @@
+name: 自动更新音乐列表
+on:
+  push:
+    paths:
+      - 'audio/**' # 当 audio 目录有变动时触发
+
+jobs:
+  update-list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 生成音乐列表
+        run: |
+          # 扫描 audio 目录下的音乐文件
+          echo "const audioFiles = [" > audio-list.js
+          find audio -type f \( -iname '*.mp3' -o -iname '*.ogg' -o -iname '*.wav' \) \
+            -exec echo "'{}'," >> audio-list.js \;
+          echo "];" >> audio-list.js
+
+      - name: 提交更新
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add audio-list.js
+          git commit -m "自动更新音乐列表"
+          git push
